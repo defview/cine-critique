@@ -1,0 +1,52 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# Cine-Critique is an advanced movie database application that utilizes cutting-edge frontend technologies like React, Redux, and Tailwind. Throughout the development process, I delved into the core concepts of React.js, including JSX syntax, component creation, working with props and state, understanding component lifecycle, implementing conditional rendering, managing lists and keys, as well as integrating Redux for state management.
+
+#To enhance the user experience and interactivity, I also implemented more complex JavaScript logic within the application. This allowed for a highly interactive and user-friendly experience, making Cine-Critique a powerful tool for movie enthusiasts.
+
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+//Description
+Movix is the best movies database application available on youtube 
+with top notch frontend technologies such as React, Redux & SCSS. 
+In this course you will learn core concepts of react js such as jsx, 
+components, props, state,  lifecycle of components, 
+conditional rendering, lists, keys & Redux, we will build more 
+complex logics in javascript to make our react application super 
+interactive and good looking.
+
+ React 18 and its latest features
+- React hooks and state management
+- Easy maintainable and scalable folder structure
+- How to make global state containers with Redux Tookit
+- How to fetch data from Rest API with Axios 
+- How to create custom hooks
+- How to create carousel/slider without library
+- How to create Infinite scrolling
+- React Router DOM Version 6
+- Loading Skeleton while fetching data from API
+- Error handling & 404 forbidden page
+- Responsive layout with perfectly placed media queries
+- Create git repo and push all project code
+- Deploy project on Vercel for free

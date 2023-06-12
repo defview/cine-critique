@@ -1,0 +1,550 @@
+@import url('https://fonts.cdnfonts.com/css/chirp-2');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        font-size: 16px;
+        line-height: 1;
+        font-weight: 500;
+
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-text-size-adjust: 100%;
+
+        --gradient: linear-gradient(98.37deg, #1d4ed8 0.99%, #06b6d4 100%);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #081628;
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    .skeleton {
+        position: relative;
+        overflow: hidden;
+        background-color: #0a2955;
+
+        &::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transform: translateX(-100%);
+            background-image: linear-gradient(90deg,
+                    rgba(#193763, 0) 0,
+                    rgba(#193763, 0.2) 20%,
+                    rgba(#193763, 0.5) 60%,
+                    rgba(#193763, 0));
+            animation: shimmer 2s infinite;
+            content: "";
+        }
+
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    }
+}
+
+.header {
+    position: fixed;
+    transform: translateY(0);
+    width: 100%;
+    height: 60px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    transition: all ease 0.5s;
+    z-index: 2;
+    flex-direction: column;
+
+    &.top {
+        background: rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(3.5px);
+        -webkit-backdrop-filter: blur(3.5px);
+    }
+
+    &.show {
+        background-color: #081628;
+    }
+
+    &.hide {
+        transform: translateY(-60px);
+    }
+}
+
+.menuItem {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+    color: #FFD700;
+    font-weight: 500;
+    position: relative;
+    cursor: pointer;
+    font-family: chirp;
+
+    &:hover {
+        color: #7393B3;
+        transition: ease-in-out;
+        transition-duration: 0.5s;
+    }
+}
+
+.mobileView {
+    background: #081628;
+
+    .menuItems {
+        display: flex;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: #081628;
+        flex-direction: column;
+        width: 100%;
+        padding: 20px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        animation: mobileMenu 0.9s ease forwards;
+
+        .menuIt {
+            font-size: 20px;
+            width: 100%;
+            height: auto;
+            padding: 15px 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            cursor: pointer;
+            font-family: chirp;
+
+            &:last-child {
+                display: none;
+            }
+        }
+    }
+}
+
+.searchBar {
+    width: 100%;
+    height: 60px;
+    background-color: #100C08;
+    position: relative;
+    top: -9px;
+    animation: mobileMenu 0.3s ease forwards;
+
+    .searchInput {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        margin-top: 10px;
+        width: 100%;
+    }
+}
+
+@keyframes mobileMenu {
+    0% {
+        transform: translateY(-130%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.menuFoot {
+    transition: all ease 0.3s;
+    cursor: pointer;
+    font-size: 12px;
+
+    &:hover {
+        color: #7393B3;
+    }
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all ease 0.3s;
+
+    &:hover {
+        box-shadow: #7393B3;
+        color: #7393B3;
+    }
+}
+
+.tabItem {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    color: #FFD700;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    transition: color ease 0.3s;
+
+    &.active {
+        color: #FFD700;
+        font-weight: 500;
+    }
+}
+
+.movingBg {
+    height: 30px;
+    width: 100px;
+    border-radius: 15px;
+    background-image: var(--gradient);
+    position: absolute;
+    left: 0;
+    transition: left cubic-bezier(0.88, -0.35, 0.565, 1.35) 0.4s;
+}
+
+.arrow {
+    font-size: 30px;
+    color: #7393B3;
+    position: absolute;
+    top: 44%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 2.0;
+    z-index: 1;
+    display: none;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.carouselLeftNav {
+    left: 30px;
+}
+
+.carouselRighttNav {
+    right: 30px;
+}
+
+.posterBlock {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1.5;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.circleRating {
+    background-color: #04152d;
+    border-radius: 50%;
+    padding: 2px;
+
+    .CircularProgressbar-text {
+        font-size: 34px;
+        font-weight: 700;
+        fill: white;
+    }
+
+    .CircularProgressbar-trail {
+        stroke: transparent;
+    }
+}
+
+.playbtn {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+
+    .svg {
+        width: 60px;
+
+        @include md {
+            width: 80px;
+        }
+    }
+
+    .textWatch {
+        font-size: 20px;
+        transition: all 0.7s ease-in-out;
+        background-color: #100C08;
+        border-radius: 4px;
+        padding: 5px 5px;
+    }
+
+    .triangle {
+        stroke-dasharray: 240;
+        stroke-dashoffset: 480;
+        stroke: #FFD700;
+        transform: translateY(0);
+        transition: all 0.7s ease-in-out;
+    }
+
+    .circle {
+        stroke: #FFD700;
+        stroke-dasharray: 650;
+        stroke-dashoffset: 1300;
+        transition: all 0.5s ease-in-out;
+    }
+
+    &:hover {
+        .text {
+            color: #7393B3;
+        }
+
+        .triangle {
+            stroke-dashoffset: 0;
+            opacity: 1;
+            stroke: #7393B3;
+            animation: trailorPlay 0.7s ease-in-out;
+        }
+
+        .circle {
+            stroke-dashoffset: 0;
+            stroke: #7393B3;
+        }
+    }
+}
+
+.opacityToplayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(3.5px);
+    -webkit-backdrop-filter: blur(3.5px);
+    opacity: 0;
+    transition: opacity 400ms;
+}
+
+.videoPopup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 9;
+
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+
+        .opacityTopLayer {
+            opacity: 1;
+        }
+
+        .videoPlayer {
+            transform: scale(1);
+        }
+    }
+}
+
+.roundedImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+}
+
+.videoThumbnail {
+    margin-bottom: 15px;
+    position: relative;
+
+    .playVid {
+        position: absolute;
+        top: 35%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+        width: 30px;
+        height: 30px;
+    }
+
+    .triangle {
+        stroke-dasharray: 240;
+        stroke-dashoffset: 480;
+        stroke: #FFD700;
+        transform: translateY(0);
+        transition: all 0.7s ease-in-out;
+    }
+
+    .circle {
+        stroke: #FFD700;
+        stroke-dasharray: 650;
+        stroke-dashoffset: 1300;
+        transition: all 0.5s ease-in-out;
+    }
+
+    &:hover {
+
+        .triangle {
+            stroke-dashoffset: 0;
+            opacity: 1;
+            stroke: #7393B3;
+            animation: trailorPlay 0.7s ease-in-out;
+        }
+
+        .circle {
+            stroke-dashoffset: 0;
+            stroke: #7393B3;
+        }
+    }
+}
+
+.loadingSpinner {
+    width: 100%;
+    height: 150px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .spinner {
+        animation: rotate 2s linear infinite;
+        z-index: 2;
+        width: 50px;
+        height: 50px;
+
+        .path {
+            stroke: hsl(210, 70, 75);
+            stroke-linecap: round;
+            animation: dash 1.5s ease-in-out infinite;
+        }
+    }
+
+    .initial {
+        height: 700px;
+    }
+
+    @keyframes rotate {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes dash {
+        0% {
+            stroke-dasharray: 1, 150;
+            stroke-dashoffset: 0;
+        }
+
+        50% {
+            stroke-dasharray: 90, 150;
+            stroke-dashoffset: -35;
+        }
+
+        100% {
+            stroke-dasharray: 90, 150;
+            stroke-dashoffset: -124;
+        }
+    }
+}
+
+.contents {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
+    margin-bottom: 50px;
+}
+
+.contentent {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
+    margin-bottom: 50px;
+
+    @include md {
+        gap: 20px;
+    }
+}
+
+.react-select-container {
+    .genresDD {
+        width: 100%;
+    }
+
+    .sortbyDD {
+        width: 100%;
+        flex-shrink: 0;
+    }
+
+    .react-select__control {
+        border: 0;
+        outline: 0;
+        box-shadow: none;
+        background-color: #100C08;
+        border-radius: 20px;
+
+        .react-select__value-container {
+
+            .react-select__placeholder,
+            .react-select__input-container {
+                color: #7393B3;
+                margin: 0 10px;
+            }
+        }
+
+        .react-select__single-value {
+            color: #7393B3;
+        }
+
+        .react-select__multi-value {
+            background-color: #7393B3;
+            border-radius: 10px;
+
+            .react-select__multi-value__label {
+                color: #100C08;
+            }
+
+            .react-select__multi-value__remove {
+                background-color: #7393B3;
+                color: #100C08;
+                cursor: pointer;
+
+                .hover {
+                    color: #7393B3;
+                }
+            }
+        }
+    }
+
+    .react-select__menu {
+        top: 40px;
+        margin: 0;
+        padding: 0;
+    }
+}
